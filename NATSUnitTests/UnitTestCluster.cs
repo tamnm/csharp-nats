@@ -1,4 +1,15 @@
-﻿// Copyright 2015 Apcera Inc. All rights reserved.
+﻿// Copyright 2015-2018 The NATS Authors
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 using System;
 using NATS.Client;
@@ -50,7 +61,7 @@ namespace NATSUnitTests
             using (NATSServer ns = utils.CreateServerOnPort(1222))
             {
                 c = cf.CreateConnection(o);
-                Assert.True(testServers[0].Equals(c.ConnectedUrl));
+                Assert.Equal(testServers[0], c.ConnectedUrl);
                 c.Close();
             }
 
@@ -58,7 +69,7 @@ namespace NATSUnitTests
             using (NATSServer ns = utils.CreateServerOnPort(1227))
             {
                 c = cf.CreateConnection(o);
-                Assert.True(testServers[5].Equals(c.ConnectedUrl));
+                Assert.Equal(testServers[5], c.ConnectedUrl);
                 c.Close();
             }
         }
@@ -153,7 +164,7 @@ namespace NATSUnitTests
                         Assert.True(Monitor.Wait(reconnectLock, 20000));
                     }
 
-                    Assert.True(c.ConnectedUrl.Equals(testServers[2]));
+                    Assert.Equal(c.ConnectedUrl,testServers[2]);
 
                     reconnectSw.Stop();
 
@@ -187,8 +198,8 @@ namespace NATSUnitTests
                 serverDiscoveredCalled = true;
             };
 
-            string seedServerArgs = @"-p 1222 -cluster nats://localhost:1333";
-            string secondClusterMemberArgs = @"-p 1223 -cluster nats://localhost:1334 -routes nats://localhost:1333";
+            string seedServerArgs = @"-p 1222 -cluster nats://127.0.0.1:1333";
+            string secondClusterMemberArgs = @"-p 1223 -cluster nats://127.0.0.1:1334 -routes nats://127.0.0.1:1333";
 
             // create the seed server for a cluster...
             using (NATSServer ns1 = utils.CreateServerWithArgs(seedServerArgs))
@@ -196,7 +207,7 @@ namespace NATSUnitTests
                 // ...then connect to it...
                 using (c = cf.CreateConnection(o))
                 {
-                    Assert.True(testServers[0].Equals(c.ConnectedUrl));
+                    Assert.Equal(testServers[0],c.ConnectedUrl);
 
                     // ...then while connected, start up a second server...
                     using (NATSServer ns2 = utils.CreateServerWithArgs(secondClusterMemberArgs))
@@ -259,7 +270,7 @@ namespace NATSUnitTests
 
 
         // TODO:  Create smaller variant [Fact]
-        public void TestHotSpotReconnect()
+        private void TestHotSpotReconnect()
         {
             int numClients = 10;
             SimClient[] clients = new SimClient[100];
@@ -557,7 +568,7 @@ namespace NATSUnitTests
         }
 
         //[Fact]
-        public void TestPingReconnect()
+        private void TestPingReconnect()
         {
             /// Work in progress
             int RECONNECTS = 4;

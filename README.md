@@ -2,10 +2,10 @@
 # NATS - .NET C# Client
 A [C# .NET](https://msdn.microsoft.com/en-us/vstudio/aa496123.aspx) client for the [NATS messaging system](https://nats.io).
 
-This Apcera supported client parallels the [NATS GO Client](https://github.com/nats-io/nats).
+This Synadia supported client parallels the [NATS GO Client](https://github.com/nats-io/nats).
 
-[![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
-[![Build status](https://ci.appveyor.com/api/projects/status/9f2jy1g9qngra3b5?svg=true)](https://ci.appveyor.com/project/NATS-CI47222/csnats)
+
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API Documentation](https://img.shields.io/badge/doc-Doxygen-brightgreen.svg?style=flat)](http://nats-io.github.io/csharp-nats)
 [![NuGet](https://img.shields.io/nuget/v/NATS.Client.svg?maxAge=2592000)](https://www.nuget.org/packages/NATS.Client)
 
@@ -199,7 +199,7 @@ defaults and they must be specified.
             IAsyncSubscription s = c.SubscribeAsync("foo", eh);
 
             MyObject obj = new MyObject();
-            obj.Company = "Apcera";
+            obj.Company = "MyCompany";
 
             // To publish an instance of your object, simply
             // call the IEncodedConnection publish API and pass
@@ -641,27 +641,3 @@ To that end, with any contributions, certainly feel free to code in a more .NET 
 * [X] Strong name the assembly
 
 Any suggestions and/or contributions are welcome!
-
-## License
-
-(The MIT License)
-
-Copyright (c) 2012-2016 Apcera Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
